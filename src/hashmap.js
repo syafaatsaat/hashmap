@@ -92,4 +92,32 @@ class HashMap {
 
     return false;
   }
+
+  remove(key) {
+    let index = this.hash(key);
+    this.checkIndexOutOfBounds(index);
+
+    // todo: decrement number of entries??
+
+    const linkedList = this.buckets[index];
+    const size = linkedList.size();
+    if (linkedList && size > 0) {
+      let iterNode = linkedList.head();
+      let indexToRemove = 0;
+      while (iterNode) {
+        if (iterNode.value.key === key)
+          break;
+
+        iterNode = iterNode.nextNode;
+        indexToRemove++;
+      }
+
+      if (indexToRemove < size) {
+        linkedList.removeAt(indexToRemove);
+        return true;
+      }
+    }
+
+    return false;
+  }
 }
