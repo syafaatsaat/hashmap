@@ -56,4 +56,24 @@ class HashMap {
 
     linkedList.append([key, value]);
   }
+
+  get(key) {
+    let index = this.hash(key);
+    this.checkIndexOutOfBounds(index);
+
+    const linkedList = this.buckets[index];
+    if (linkedList && linkedList.size() > 0) {
+      let iterNode = linkedList.head();
+      while (iterNode) {
+        if (iterNode.value.key === key) {
+          return iterNode.value.value;
+        }
+        iterNode = iterNode.nextNode;
+      }
+    }
+
+    return null;
+  }
+
+
 }
