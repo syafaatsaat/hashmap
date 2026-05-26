@@ -25,18 +25,38 @@ class HashMap {
     }
   }
 
-  // increaseCapacity() {
-  //   this.capacity *= 2;
+  increaseCapacity() {
+    const newBuckets = new Array(this.capacity);
+    
+    for (let i = 0; i < this.capacity; ++i) {
+      if (this.buckets[i]) {
+        newBuckets[i] = new LinkedList();
+        let iterNode = this.buckets[i].head();
+        while (iterNode) {
+          newBuckets[i].append(iterNode.value);
+          iterNode = iterNode.nextNode;
+        }
+      }
+    }
+    
+    this.clear();
+    this.capacity *= 2;
+    this.buckets.length = this.capacity;
 
-  // }
+    for (let i = 0; i < newBuckets.length; ++i) {
+      if (newBuckets[i]) {
+        let iterNode = newBuckets[i].head();
+        while (iterNode) {
+          this.set(iterNode.value.key, iterNode.value.value);
+          iterNode = iterNode.nextNode;
+        }
+      }
+    }
+  }
 
   set(key, value) {
     let index = this.hash(key);
     this.checkIndexOutOfBounds(index);
-
-    // if (this.entryCount >= this.capacity * this.loadFactor) {
-    //   this.increaseCapacity();
-    // }
 
     if (this.buckets[index] === undefined) {
       this.buckets[index] = new LinkedList();
@@ -55,6 +75,10 @@ class HashMap {
     }
 
     linkedList.append([key, value]);
+
+    if (this.length() * this.capacity >= this.loadFactor) {
+      this.increaseCapacity();
+    }
   }
 
   get(key) {
@@ -97,8 +121,6 @@ class HashMap {
     let index = this.hash(key);
     this.checkIndexOutOfBounds(index);
 
-    // todo: decrement number of entries??
-
     const linkedList = this.buckets[index];
     const size = linkedList.size();
     if (linkedList && size > 0) {
@@ -119,5 +141,28 @@ class HashMap {
     }
 
     return false;
+  }
+
+  length() {
+    let result = 0;
+    this.buckets.forEach(bucket => {
+      if (!bucket) {
+        result += bucket.size();
+      }
+    });
+
+    return result;
+  }
+
+  clear() {
+    this.buckets.forEach(bucket => {
+      if (!bucket) {
+        while (bucket.head()) {
+          bucket.pop();
+        }
+
+        bucket = null;
+      }
+    });
   }
 }
