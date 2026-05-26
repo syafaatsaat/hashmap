@@ -165,4 +165,51 @@ class HashMap {
       }
     });
   }
+
+  keys() {
+    const keysArray = [];
+    this.buckets.forEach(bucket => {
+      if (!bucket) {
+        let iterNode = bucket.head();
+        while (iterNode) {
+          keysArray.push(iterNode.value.key);
+          iterNode = iterNode.nextNode;
+        }
+      }
+    });
+
+    return keysArray;
+  }
+
+  values() {
+    const valuesArray = [];
+    this.buckets.forEach(bucket => {
+      if (!bucket) {
+        let iterNode = bucket.head();
+        while (iterNode) {
+          valuesArray.push(iterNode.value.value);
+          iterNode = iterNode.nextNode;
+        }
+      }
+    });
+
+    return valuesArray;
+  }
+
+  entries() {
+    const entriesArray = [];
+    this.buckets.forEach(bucket => {
+      if (!bucket) {
+        let iterNode = bucket.head();
+        while (iterNode) {
+          entriesArray.push(
+            [iterNode.value.key, iterNode.value.value]
+          );
+          iterNode = iterNode.nextNode;
+        }
+      }
+    });
+
+    return entriesArray;
+  }
 }
