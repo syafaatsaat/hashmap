@@ -1,15 +1,18 @@
 import "./styles.css";
-import { greeting } from "./greeting.js";
+import { HashMap } from "./hashmap.js";
 
-if (process.env.NODE_ENV !== "production") {
-  console.log("Looks like we are in development mode!");
-}
+const test = new HashMap();
 
-console.log(greeting);
+test.set('apple', 'red');
+test.set('banana', 'yellow');
+test.set('carrot', 'orange');
+test.set('dog', 'brown');
+test.set('elephant', 'gray');
+test.set('frog', 'green');
+test.set('grape', 'purple');
+test.set('hat', 'black');
+test.set('ice cream', 'white');
+test.set('jacket', 'blue');
+test.set('kite', 'pink');
+test.set('lion', 'golden');
 
-// import odinImage from "./odin.png";
-
-// const image = document.createElement("img");
-// image.src = odinImage;
-
-// document.body.appendChild(image);
