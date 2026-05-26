@@ -1,3 +1,4 @@
-# template-web
+# HashMap
 
-Creating a template for future web dev projects
+Making my own HashMap, which is a practice as a part of The Odin Project 
+curriculum.
