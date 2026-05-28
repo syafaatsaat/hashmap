@@ -80,7 +80,7 @@ export class HashMap {
 
     linkedList.append({key: key, value: value});
 
-    if (this.getCurrentLoadLevels() >= this.loadFactor) {
+    if (this.getCurrentLoadLevels() > this.loadFactor) {
       this.increaseCapacity();
     }
   }

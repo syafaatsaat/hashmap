@@ -1,3 +1,4 @@
+import { LinkedList } from "./linked-list.js";
 import { HashMap } from "./hashmap.js";
 
 export class HashSet extends HashMap {
@@ -51,7 +52,7 @@ export class HashSet extends HashMap {
 
     linkedList.append(key);
 
-    if (this.getCurrentLoadLevels() >= this.loadFactor) {
+    if (this.getCurrentLoadLevels() > this.loadFactor) {
       this.increaseCapacity();
     }
   }
