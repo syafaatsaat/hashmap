@@ -1,7 +1,7 @@
-# HashMap
+# HashMap and HashSet
 
-Making my own HashMap, which is a practice as a part of The Odin Project 
-curriculum.
+Making my own HashMap and HashSet, which is a practice as a part of The Odin 
+Project curriculum.
 
 ## Features
 
