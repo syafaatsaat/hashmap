@@ -92,5 +92,71 @@ export class HashSet extends HashMap {
     return false;
   }
 
-  
+  remove(key) {
+    let index = this.hash(key);
+    this.checkIndexOutOfBounds(index);
+
+    const linkedList = this.buckets[index];
+    const size = linkedList.size();
+    if (linkedList && size > 0) {
+      let iterNode = linkedList.head;
+      let indexToRemove = 0;
+      while (iterNode) {
+        if (iterNode.value === key)
+          break;
+
+        iterNode = iterNode.nextNode;
+        indexToRemove++;
+      }
+
+      if (indexToRemove < size) {
+        linkedList.removeAt(indexToRemove);
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  keys() {
+    const keysArray = [];
+    this.buckets.forEach(bucket => {
+      if (bucket) {
+        let iterNode = bucket.head;
+        while (iterNode) {
+          keysArray.push(iterNode.value);
+          iterNode = iterNode.nextNode;
+        }
+      }
+    });
+
+    return keysArray;
+  }
+
+  values() {
+    throw new Error(
+      "This method is unsupported in HashSet instances. Use keys() instead."
+    );
+  }
+
+  entries() {
+    throw new Error(
+      "This method is unsupported in HashSet instances. Use keys() instead."
+    );
+  }
+
+  print() {
+    for (let i = 0; i < this.capacity; ++i) {
+      let bucketStr = `[${i}] => `;
+      if (this.buckets[i]) {
+        let iterNode = this.buckets[i].head;
+        while (iterNode) {
+          bucketStr += `[${iterNode.value}] => `;
+          iterNode = iterNode.nextNode;
+        }
+      }
+      bucketStr += "null";
+      console.log(bucketStr);
+    }
+  }
 }
