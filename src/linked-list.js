@@ -160,7 +160,7 @@ export class LinkedList {
   }
 
   removeAt(index) {
-    checkIndexOutOfBounds(index);
+    this.checkIndexOutOfBounds(index);
 
     let prevNode = null;
     let iterNode = this.head;
