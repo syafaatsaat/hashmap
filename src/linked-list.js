@@ -67,7 +67,7 @@ export class LinkedList {
   }
 
   at(index) {
-    checkIndexOutOfBounds(index);
+    this.checkIndexOutOfBounds(index);
 
     let currIndex = 0;
     let iterNode = this.head;
@@ -127,7 +127,7 @@ export class LinkedList {
   }
 
   insertAt(index, ...values) {
-    checkIndexOutOfBounds(index);
+    this.checkIndexOutOfBounds(index);
 
     let newNodes = null;
     let tailNode = null;
